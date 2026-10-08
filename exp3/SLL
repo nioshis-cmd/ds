@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+void insertFirst()
+{
+    struct node *newnode;
+    int x;
+
+    newnode = (struct node *)malloc(sizeof(struct node));
+
+    printf("Enter value: ");
+    scanf("%d", &x);
+
+    newnode->data = x;
+    newnode->next = head;
+    head = newnode;
+}
+
+void deleteFirst()
+{
+    struct node *temp;
+
+    if(head == NULL)
+    {
+        printf("List is empty\n");
+        return;
+    }
+
+    temp = head;
+    head = head->next;
+    free(temp);
+}
+
+void display()
+{
+    struct node *temp = head;
+
+    if(head == NULL)
+    {
+        printf("List is empty\n");
+        return;
+    }
+
+    while(temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    printf("\n");
+}
+
+int main()
+{
+    int choice;
+
+    do
+    {
+        printf("\n1. Insert First");
+        printf("\n2. Delete First");
+        printf("\n3. Display");
+        printf("\n4. Exit");
+        printf("\nEnter choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+                insertFirst();
+                break;
+
+            case 2:
+                deleteFirst();
+                break;
+
+            case 3:
+                display();
+                break;
+
+            case 4:
+                break;
+
+            default:
+                printf("Invalid choice\n");
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
