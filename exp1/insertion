@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void insertionSort(int a[], int n)
+{
+    int i, current, prev;
+
+    for(i = 1; i < n; i++)
+    {
+        current = a[i];
+        prev = i - 1;
+
+        while(prev >= 0 && a[prev] > current)
+        {
+            a[prev + 1] = a[prev];
+            prev--;
+        }
+
+        a[prev + 1] = current;
+    }
+}
+
+int main()
+{
+    int a[100], n, i;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter elements: ");
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    insertionSort(a, n);
+
+    printf("Sorted array: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
